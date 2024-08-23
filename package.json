@@ -10,7 +10,6 @@
   },
   "dependencies": {
     "@babel/core": "^7.25.2",
-    "@babel/preset-env": "^7.25.4",
     "@babel/preset-react": "^7.24.7",
     "@emotion/react": "^11.13.3",
     "@emotion/styled": "^11.13.0",
@@ -24,8 +23,9 @@
     "react-dom": "^18.3.1"
   },
   "devDependencies": {
+    "@babel/preset-env": "^7.25.4",
     "@types/node": "22.5.0",
-    "eslint": "^8.57.0",
-    "eslint-config-next": "^14.2.5"
+    "eslint": "^9.9.1",
+    "eslint-config-next": "^14.2.6"
   }
 }

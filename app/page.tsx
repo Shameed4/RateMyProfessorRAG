@@ -57,7 +57,9 @@ export default function Home() {
           flexDirection="column"
           justifyContent="center"
           alignItems="center"
+          
         >
+          
           <Stack
             direction={'column'}
             width="500px"
