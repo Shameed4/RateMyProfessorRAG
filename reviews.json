@@ -1,0 +1,125 @@
+{
+    "reviews": [
+      {
+        "professor": "Dr. Sarah Bennett",
+        "subject": "Introduction to Psychology",
+        "stars": 4,
+        "review": "Great lecturer, but the grading is tough. You really have to put in the work."
+      },
+      {
+        "professor": "Dr. John Miller",
+        "subject": "Advanced Calculus",
+        "stars": 5,
+        "review": "Excellent professor! His explanations are clear, and he always makes time for students."
+      },
+      {
+        "professor": "Dr. Emily Zhang",
+        "subject": "Organic Chemistry",
+        "stars": 3,
+        "review": "Challenging course with a heavy workload. Dr. Zhang is knowledgeable but not very approachable."
+      },
+      {
+        "professor": "Dr. Robert Johnson",
+        "subject": "World History",
+        "stars": 2,
+        "review": "Lectures are dry and unengaging. The exams are difficult and not always reflective of the material covered."
+      },
+      {
+        "professor": "Dr. Maria Garcia",
+        "subject": "Microeconomics",
+        "stars": 4,
+        "review": "Dr. Garcia is passionate about the subject, which makes the class interesting. However, the assignments are quite challenging."
+      },
+      {
+        "professor": "Dr. Alan Thompson",
+        "subject": "Physics 101",
+        "stars": 5,
+        "review": "One of the best professors I've ever had. His enthusiasm for physics is contagious."
+      },
+      {
+        "professor": "Dr. Linda Park",
+        "subject": "Sociology of Gender",
+        "stars": 3,
+        "review": "The course content is interesting, but Dr. Park's lectures can be a bit monotonous."
+      },
+      {
+        "professor": "Dr. Kevin Lee",
+        "subject": "Computer Science 101",
+        "stars": 4,
+        "review": "Great introduction to programming. Dr. Lee is very helpful, but the course moves quickly."
+      },
+      {
+        "professor": "Dr. Olivia Adams",
+        "subject": "English Literature",
+        "stars": 5,
+        "review": "Dr. Adams is an inspiring professor who really cares about her students. Her classes are thought-provoking and engaging."
+      },
+      {
+        "professor": "Dr. Jason Patel",
+        "subject": "Statistics",
+        "stars": 3,
+        "review": "The material is dense, and Dr. Patel's teaching style is straightforward, but not very engaging."
+      },
+      {
+        "professor": "Dr. Karen Smith",
+        "subject": "Philosophy 101",
+        "stars": 4,
+        "review": "Dr. Smith is very knowledgeable and encourages critical thinking, but her lectures can sometimes be hard to follow."
+      },
+      {
+        "professor": "Dr. Michael Brown",
+        "subject": "Environmental Science",
+        "stars": 5,
+        "review": "Passionate about the subject and cares about student success. His classes are both informative and enjoyable."
+      },
+      {
+        "professor": "Dr. Laura Davis",
+        "subject": "Art History",
+        "stars": 2,
+        "review": "The subject matter is interesting, but Dr. Davis tends to go off on tangents, making the lectures confusing."
+      },
+      {
+        "professor": "Dr. Andrew Wilson",
+        "subject": "Political Science",
+        "stars": 3,
+        "review": "Decent professor, but the course is very reading-intensive. His lectures are average."
+      },
+      {
+        "professor": "Dr. Sophia Martinez",
+        "subject": "Spanish 101",
+        "stars": 4,
+        "review": "Dr. Martinez is a great teacher. She makes learning Spanish fun and interactive."
+      },
+      {
+        "professor": "Dr. Benjamin Clark",
+        "subject": "Human Anatomy",
+        "stars": 5,
+        "review": "Challenging course, but Dr. Clark makes the material accessible and interesting. Highly recommend!"
+      },
+      {
+        "professor": "Dr. Jessica Nguyen",
+        "subject": "Marketing 101",
+        "stars": 4,
+        "review": "Engaging and knowledgeable. Dr. Nguyen brings real-world experience into the classroom."
+      },
+      {
+        "professor": "Dr. David Harris",
+        "subject": "Macroeconomics",
+        "stars": 2,
+        "review": "Dr. Harris knows his stuff, but his lectures are dry, and the exams are difficult."
+      },
+      {
+        "professor": "Dr. Ashley Taylor",
+        "subject": "Biology 101",
+        "stars": 3,
+        "review": "The content is interesting, but Dr. Taylor's lectures can be hard to follow at times."
+      },
+      {
+        "professor": "Dr. William Evans",
+        "subject": "Creative Writing",
+        "stars": 5,
+        "review": "One of the most inspiring professors. Dr. Evans encourages creativity and provides constructive feedback."
+      }
+    ]
+  }
+  
