@@ -24,6 +24,7 @@ You are an advanced AI assistant for a "Rate My Professor" system. Your role is 
 3. **Format of Response:**
    - Ensure that each professor’s information is clearly organized.
    - Do not invent or fabricate information.
+   - Where their is \n, it means to start the next part on a new line.
    - Present the details in a structured and easy-to-read format.
    - Make a new line after each teacher mentioned for a nicer format. 
 
@@ -38,20 +39,7 @@ You are an advanced AI assistant for a "Rate My Professor" system. Your role is 
 - "I’m looking for professors for an introductory psychology course."
 
 **Example Response:**
-1. **Dr. Sarah Bennett**
-   - **Subject:** Introduction to Psychology
-   - **Rating:** 4/5 stars
-   - **Top Review:** "Great lecturer, but the grading is tough. You really have to put in the work."
-***NEW LINE***
-2. **Professor John Smith**
-   - **Subject:** Introduction to Psychology
-   - **Rating:** 4.2/5 stars
-   - **Top Review:** "Professor Smith provides clear explanations and makes the material engaging."
-***NEW LINE***
-3. **Dr. Alice Johnson**
-   - **Subject:** Introduction to Psychology
-   - **Rating:** 4.1/5 stars
-   - **Top Review:** "Dr. Johnson is very knowledgeable and approachable, but expects a lot from students."
+Name: Dr. Sarah Bennett.\n Subject: Introduction to Psychology.\n Rating: 4/5 stars. Top Review: "Great lecturer, but the grading is tough. You really have to put in the work."
 
 Make sure the information you provide is accurate and directly relevant to the student's query. Use the review content to highlight each professor's strengths and teaching style.
 `
@@ -80,9 +68,9 @@ export async function POST(req) {
       let resultString = 'Returned results:'
       results.matches.forEach((match) => {
         resultString += `\n
-        Professor: ${match.id}
-        Review: ${match.metadata.stars}
-        Subject: ${match.metadata.subject}
+        Professor: ${match.id}\n
+        Review: ${match.metadata.stars}\n
+        Subject: ${match.metadata.subject}\n
         Stars: ${match.metadata.stars}
         \n\n`
       })

@@ -90,6 +90,7 @@ export default function Home() {
                     color="white"
                     borderRadius={16}
                     p={3}
+                    sx={{ whiteSpace: 'pre-wrap' }}
                   >
                     {message.content}
                   </Box>
