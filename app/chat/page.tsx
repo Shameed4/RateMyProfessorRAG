@@ -1,7 +1,10 @@
 'use client'
 import { Box, Button, Stack, TextField, Typography, Divider } from '@mui/material'
-import { useState } from 'react'
+import { useState, useRef, useEffect } from 'react'
 import "/app/globals.css"
+import ArrowBackIcon from '@mui/icons-material/ArrowBack';
+import { useRouter } from "next/navigation"
+import { Router } from 'next/router';
 export default function Home() {
   // We'll add more code here in the following steps
   const [messages, setMessages] = useState([
@@ -11,6 +14,14 @@ export default function Home() {
     },
   ])
   const [message, setMessage] = useState('')
+  const router = useRouter()
+  const stackRef = useRef(null);
+
+  useEffect(() => {
+    if (stackRef.current) {
+      stackRef.current.scrollTop = stackRef.current.scrollHeight;
+    }
+  }, [messages]);
 
   const sendMessage = async () => {
     setMessage('')
@@ -19,6 +30,8 @@ export default function Home() {
       { role: 'user', content: message },
       { role: 'assistant', content: '' },
     ])
+
+
 
     const response = fetch('/api/chat', {
       method: 'POST',
@@ -47,6 +60,7 @@ export default function Home() {
         return reader.read().then(processText)
       })
     })
+
   }
 
   return (
@@ -77,7 +91,7 @@ export default function Home() {
 
       >
         <Box width="100%" height="50px" sx={{ backgroundColor: "#831FFE" }}
-          borderRadius={4} display="flex" justifyContent="center" alignItems="center"
+          borderRadius={4} display="flex" justifyContent="center" alignItems="center" padding={1}
         >
           <Typography variant="h5" color="white">Rate My Professor Chatbot</Typography>
 
@@ -86,9 +100,11 @@ export default function Home() {
         <Stack
           direction={'column'}
           spacing={2}
+
           flexGrow={1}
-          overflow="auto"
+          overflow="auto" //this ******make it autoscroll
           maxHeight="100%"
+          ref={stackRef}
         >
           {messages.map((message, index) => (
             <Box
@@ -99,15 +115,20 @@ export default function Home() {
               }
             >
               <Box
+
                 bgcolor={
                   message.role === 'assistant'
                     ? '#EDDFFE'
-                    : '#831FFE'
+                    : '#AB67FF'
                 }
                 color="black"
                 borderRadius={16}
-                p={3}
+                p={2}
+                mx={2}
+
                 sx={{ whiteSpace: 'pre-wrap' }}
+                padding={3}
+
               >
                 {message.content}
               </Box>
@@ -119,6 +140,12 @@ export default function Home() {
             label="Message"
             fullWidth
             value={message}
+            onKeyDown={(e) => {
+              if (e.key == 'Enter') {
+                e.preventDefault()
+                sendMessage()
+              }
+            }}
             onChange={(e) => setMessage(e.target.value)}
             sx={{
 
@@ -134,10 +161,10 @@ export default function Home() {
                 },
               },
               '& .MuiInputLabel-root': {
-                color: 'grey.700', // Label color when not focused
+                color: 'grey.900', // Label color when not focused
               },
               '& .MuiInputLabel-root.Mui-focused': {
-                color: 'grey.600', // Label color when focused
+                color: 'grey.700', // Label color when focused
               },
 
             }}
@@ -152,6 +179,30 @@ export default function Home() {
           </Button>
         </Stack>
       </Stack>
+
+      <Box
+        onClick={() => {
+          router.push("/")
+        }}
+        sx={{
+          position: 'fixed',
+          top: "1vw",
+          left: "1vw",
+          backgroundColor: '#831FFE',
+          color: 'white',
+          padding: 2,
+          borderRadius: 2,
+          boxShadow: '0 4px 8px rgba(0, 0, 0, 0.3)',
+          display: 'flex',
+          alignItems: 'center',
+          justifyContent: 'center',
+          '&:hover': {
+            backgroundColor: "#6302DB", // Background color on hover
+          },
+        }}>
+        <ArrowBackIcon />
+      </Box>
+
     </Box>
   )
 }
