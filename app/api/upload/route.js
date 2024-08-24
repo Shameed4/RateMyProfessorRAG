@@ -13,7 +13,7 @@ const openai = new OpenAI()
 
 async function scrape_website(url) {
     // Launch the browser
-    const browser = await puppeteer.launch({ headless: false }); // Set headless to true for running without a UI
+    const browser = await puppeteer.launch({ headless: true }); // Set headless to true for running without a UI
     const page = await browser.newPage();
 
     // Navigate to the page
@@ -101,7 +101,6 @@ export async function POST(req, res) {
     try {
         scrapeResult = await scrape_website(url)
         console.log(scrapeResult)
-
 
         const items = []
         for (let i = 0; i < scrapeResult.length; i++) {

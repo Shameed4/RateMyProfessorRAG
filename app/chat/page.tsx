@@ -5,8 +5,9 @@ import "/app/globals.css"
 import ArrowBackIcon from '@mui/icons-material/ArrowBack';
 import { useRouter } from "next/navigation"
 import { Router } from 'next/router';
+import {ScrapeDiv} from "../components/scrape"
+
 export default function Home() {
-  // We'll add more code here in the following steps
   const [messages, setMessages] = useState([
     {
       role: 'assistant',
@@ -79,6 +80,7 @@ export default function Home() {
       }}
       padding={3}
     >
+      
       <Stack
         direction={'column'}
         width="500px"
@@ -96,6 +98,7 @@ export default function Home() {
           <Typography variant="h5" color="white">Rate My Professor Chatbot</Typography>
 
         </Box>
+        <ScrapeDiv/>
         <Divider sx={{ width: '100%', borderBottomWidth: 2 }} />
         <Stack
           direction={'column'}
@@ -123,7 +126,6 @@ export default function Home() {
                 }
                 color="black"
                 borderRadius={16}
-                p={2}
                 mx={2}
 
                 sx={{ whiteSpace: 'pre-wrap' }}
@@ -166,7 +168,6 @@ export default function Home() {
               '& .MuiInputLabel-root.Mui-focused': {
                 color: 'grey.700', // Label color when focused
               },
-
             }}
           />
           <Button sx={{
