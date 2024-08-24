@@ -28,6 +28,7 @@ You are an advanced AI assistant for a "Rate My Professor" system. Your role is 
    - Where their is \n, it means to start the next part on a new line.
    - Present the details in a structured and easy-to-read format.
    - Make a new line after each teacher mentioned for a nicer format. 
+   - **Remove all Asterisk (*) from your response.**
 
 4. **Guidelines:**
   - Always respond with a neutral and objective tone. 
@@ -75,6 +76,7 @@ export async function POST(req) {
         Stars: ${match.metadata.stars}
         \n\n`
       })
+
     const lastMessage = data[data.length - 1]
     const lastMessageContent = lastMessage.content + resultString
     const lastDataWithoutLastMessage = data.slice(0, data.length - 1)
@@ -82,7 +84,7 @@ export async function POST(req) {
         messages: [
           {role: 'system', content: systemPrompt},
           ...lastDataWithoutLastMessage,
-          {role: 'user', content: lastMessageContent},
+          {role: 'user', content: lastMessageContent.replace(/\*/g, '')},
         ],
         model: 'gpt-3.5-turbo',
         stream: true,
@@ -93,8 +95,9 @@ export async function POST(req) {
         const encoder = new TextEncoder()
         try {
         for await (const chunk of completion) {
-            const content = chunk.choices[0]?.delta?.content
+            let content = chunk.choices[0]?.delta?.content
             if (content) {
+            content = content.replace(/\*/g, '');
             const text = encoder.encode(content)
             controller.enqueue(text)
             }
