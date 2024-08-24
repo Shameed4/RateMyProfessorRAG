@@ -1,7 +1,9 @@
 const puppeteer = require('puppeteer')
 const { Pinecone } = require('@pinecone-database/pinecone');
+import { NextResponse } from 'next/server';
 const OpenAI = require('openai');
-const dotenv = require('dotenv');
+
+require('dotenv').config({ path: '.env.local' });
 
 const pc = new Pinecone({
     apiKey: process.env.PINECONE_API_KEY,
@@ -9,13 +11,12 @@ const pc = new Pinecone({
 const index = pc.index('rag').namespace('ns1')
 const openai = new OpenAI()
 
-async function scrape_website() {
+async function scrape_website(url) {
     // Launch the browser
     const browser = await puppeteer.launch({ headless: false }); // Set headless to true for running without a UI
     const page = await browser.newPage();
 
     // Navigate to the page
-    const url = 'https://www.ratemyprofessors.com/professor/394782'
     await page.goto(url, { waitUntil: 'networkidle2' });
 
     // Function to close the cookie modal if it appears
@@ -92,18 +93,37 @@ async function scrape_website() {
     return ratings;
 }
 
-async function POST(req) {
+export async function POST(req, res) {
     const data = await req.json()
-    pc.create_index(
-        name="rag", dimension=1536, metric="cosine", spec=ServerlessSpec(cloud="aws", region="us-east-1")
-    )
-    const result = await scrape_website()
-    for ({ professor, subject, stars, review } in result) {
-        const index = pc.index('rag').namespace('ns1')
-        const openai = new OpenAI()
+    const url = data.url
+    let scrapeResult;
+    let result;
+    try {
+        scrapeResult = await scrape_website(url)
+        console.log(scrapeResult)
+
+
+        const items = []
+        for (let i = 0; i < scrapeResult.length; i++) {
+            const { professor, subject, stars, review } = scrapeResult[i]
+            const embedding = await openai.embeddings.create({
+                model: 'text-embedding-3-small',
+                input: review,
+                encoding_format: 'float',
+            })
+            const vector = embedding.data[0].embedding
+
+            items.push({
+                id: `${professor}-${i}`,
+                values: vector,
+                metadata: { professor, review, subject, stars }
+            })
+        }
+        result = await index.upsert(items);
     }
-    console.log(result)
+    catch (e) {
+        console.log(e);
+        return res.status(404).json({ success: false, result: e }, { status: 500 });
+    }
+    return NextResponse.json({ success: true, result }, { status: 200 });
 }
-
-
-POST()
